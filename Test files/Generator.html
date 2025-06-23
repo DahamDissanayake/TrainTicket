@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎫 Free Tickets Bitchhhh!!!</h1>
+        <form id="ticketForm">
+            <div class="form-group">
+                <label for="travelDate">
+                    Travel Date (Full Format)
+                </label>
+                <input type="text" id="travelDate" name="travelDate" placeholder="e.g., yyyy-mm-dd" required>
+            </div>
+
+            <div class="form-group">
+                <label for="startStation">
+                    Starting Station (In Block Capital)
+                </label>
+                <input type="text" id="startStation" name="startStation" placeholder="e.g., GAMPAHA" required>
+            </div>
+
+            <div class="form-group">
+                <label for="endStation">
+                    Ending Station (In Block Capital)
+                </label>
+                <input type="text" id="endStation" name="endStation" placeholder="e.g., BAMBALAPITIYA" required>
+            </div>
+
+            <div class="form-group">
+                <label for="shortDate">
+                    Date (Short Format)
+                </label>
+                <input type="text" id="shortDate" name="shortDate" placeholder="e.g., 16-Jan" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ticketPrice">
+                    Ticket Price
+                </label>
+                <input type="text" id="ticketPrice" name="ticketPrice" placeholder="e.g., 20" required>
+            </div>
+
+            <button type="submit">
+                Generate Ticket
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('ticketForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                travelDate: document.getElementById('travelDate').value,
+                startStation: document.getElementById('startStation').value,
+                endStation: document.getElementById('endStation').value,
+                shortDate: document.getElementById('shortDate').value,
+                ticketPrice: document.getElementById('ticketPrice').value
+            };
+            
+            // Store data in sessionStorage
+            for (let key in formData) {
+                sessionStorage.setItem(key, formData[key]);
+            }
+            
+            // Redirect to ticket page
+            window.location.href = 'GeneratedTest.html';
+        });
+    </script>
+</body>
+</html>
