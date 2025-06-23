@@ -68,7 +68,7 @@
                     stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </div>
-              <span>Third Class</span>
+              <span class="detail-value" id="Class">Third Class</span>
             </div>
             <div class="info-item">
               <div class="info-icon">
@@ -145,6 +145,7 @@
       const endStation = sessionStorage.getItem('endStation') || 'Bambalapitiya';
       const shortDate = sessionStorage.getItem('shortDate') || '23-Jan';
       const ticketPrice = sessionStorage.getItem('ticketPrice') || '20.00';
+      const classType = sessionStorage.getItem('Class') || 'Third Class';
       const ticketNumber = generateTicketNumber();
 
       // Update ticket display with error handling
@@ -162,6 +163,7 @@
       updateElement('fullDate', 'This ticket is valid for use on ' + travelDate);
       updateElement('shortDateDisplay', shortDate);
       updateElement('price', 'Rs. ' + ticketPrice);
+      updateElement('Class', classType);
       updateElement('barcodeNumber', ticketNumber);
     });
   </script>
