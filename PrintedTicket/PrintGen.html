@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>PDF Generator</h1>
+    <button onclick="generatePDF()">Generate PDF</button>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function generatePDF() {
+            // Fetch the HTML content from the external file
+            fetch('TestingPrint1.html')
+                .then(response => response.text())
+                .then(html => {
+                    // Create a temporary div to hold the content
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = html;
+                    
+                    // Configure PDF options
+                    const options = {
+                        margin: 10,
+                        filename: 'railway-ticket.pdf',
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 2 },
+                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                    };
+                    
+                    // Generate and download PDF
+                    html2pdf().set(options).from(tempDiv).save();
+                })
+                .catch(error => {
+                    console.error('Error loading HTML file:', error);
+                    alert('Could not load the HTML file. Make sure TestingPrint1.html is in the same directory.');
+                });
+        }
+    </script>
+</body>
+</html>

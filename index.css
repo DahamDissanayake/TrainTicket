@@ -27,12 +27,20 @@
         h1 {
             text-align: center;
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             font-size: 2.5em;
             background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        span{
+            display: block;
+            text-align: center;
+            color: #888;
+            margin-bottom: 20px;
+            font-size: 1.2em;
         }
 
         .form-group {
