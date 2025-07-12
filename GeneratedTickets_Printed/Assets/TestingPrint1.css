@@ -13,11 +13,10 @@ body {
 .container {
     justify-content: center;
     align-items: center;
-
 }
+
 .ticket {
     width: 555px;
-    
     background: white;
     border: 1px solid #e5e5e5;
     overflow: hidden;
@@ -277,76 +276,44 @@ body {
     color: #6b7280;
 }
 
-/* Responsive Design */
+/* Mobile Scaling - Maintains Desktop Layout but Scales Down */
 @media (max-width: 600px) {
     body {
         padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
     }
     
     .ticket {
-        width: 100%;
-        max-width: 555px;
+        /* Scale the entire ticket to fit mobile screens */
+        transform: scale(0.65);
+        transform-origin: center;
+        width: 555px; /* Keep original width */
+        margin: 0;
     }
-    
-    .ticket-header {
-        padding: 0 15px;
+}
+
+/* For very small screens */
+@media (max-width: 400px) {
+    .ticket {
+        transform: scale(0.55);
+        transform-origin: center;
     }
-    
-    .ticket-content {
-        padding: 15px;
-    }
-    
-    .station-info {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .station {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .station.arrival {
-        text-align: center;
-    }
-    
-    .journey-details {
-        width: 100%;
-        max-width: 200px;
-        margin: 0 auto;
-    }
-    
-    .details-section {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .ticket-details {
-        width: 100%;
-        height: auto;
-    }
-    
-    .detail-row {
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .detail-item {
-        width: 100%;
-    }
-    
-    .qr-section {
-        width: 100px;
-        height: 100px;
-        margin: 0 auto;
-    }
-    
-    .ticket-footer {
-        padding: 0 15px;
-        flex-direction: column;
-        height: auto;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        gap: 5px;
+}
+
+/* For medium mobile screens */
+@media (max-width: 480px) and (min-width: 401px) {
+    .ticket {
+        transform: scale(0.6);
+        transform-origin: center;
     }
 }
