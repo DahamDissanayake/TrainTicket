@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Railways - E-Ticket</title>
     <link rel="stylesheet" href="Assets/TestingPrint1.css">
 </head>
+
 <body>
     <div class="container">
         <div class="ticket">
             <!-- Header Section -->
             <div class="ticket-header">
                 <div class="logo-section">
-                    <img alt="Sri Lanka Railways Logo" 
-                         src="Assets/slr-header-mobile.svg" 
-                         class="logo">
+                    <img alt="Sri Lanka Railways Logo" src="Assets/slr-header-mobile.svg" class="logo">
                     <div class="header-text">
                         <p class="title">Sri Lanka Railways</p>
                         <p class="subtitle">ශ්‍රී ලංකා දුම්රිය සේවය &nbsp; இலங்கை ரயில்வே</p>
@@ -40,12 +40,12 @@
                         <p class="station-local" id="start-sin">දෙමටගොඩ</p>
                         <p class="station-tamil" id="start-tam">தெமட்டகொட</p>
                     </div>
-                    
+
                     <div class="journey-details">
                         <p class="date" id=shortwyear>16-Jun-2025</p>
                         <p class="price" id="price">Rs. 20.00</p>
                     </div>
-                    
+
                     <div class="station arrival">
                         <p class="station-name" id="end-eng">COLOMBO FORT</p>
                         <p class="station-local" id="end-sin">කොළඹ කොටුව</p>
@@ -65,7 +65,7 @@
                                     <p class="detail-tamil" id="class-tam">மூன்றாம் வகுப்பு</p>
                                 </div>
                             </div>
-                            
+
                             <div class="detail-item">
                                 <div class="icon passenger-type"></div>
                                 <div class="detail-text">
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="detail-row">
                             <div class="detail-item">
                                 <div class="icon ticket-type"></div>
@@ -85,7 +85,7 @@
                                     <p class="detail-tamil">பயணிகள் டிக்கெட்</p>
                                 </div>
                             </div>
-                            
+
                             <div class="detail-item">
                                 <div class="icon direction"></div>
                                 <div class="detail-text">
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="qr-section">
                         <img src="Assets/Train-QR.png" alt="QR Code" class="qr-code">
                     </div>
@@ -116,128 +116,148 @@
         </div>
     </div>
     <script>
-    // Station and Class translations data
-    const translationData = {
-        "BAMBALAPITIYA": {
-            "English": "BAMBALAPITIYA",
-            "Sinhala": "බම්බලපිටිය",
-            "Tamil": "பம்பலபிட்டிய"
-        },
-        "COLOMBO FORT": {
-            "English": "COLOMBO FORT",
-            "Sinhala": "කොළඹ කොටුව",
-            "Tamil": "கொழும்பு கோட்டை"
-        },
-        "GAMPAHA": {
-            "English": "GAMPAHA",
-            "Sinhala": "ගම්පහ",
-            "Tamil": "கம்பஹா"
-        },
-        "RAGAMA": {
-            "English": "RAGAMA",
-            "Sinhala": "රාගම",
-            "Tamil": "ராகமா"
-        },
-        "KOLLUPITIYA": {
-            "English": "KOLLUPITIYA",
-            "Sinhala": "කොල්ලුපිටිය",
-            "Tamil": "கொல்லுபிட்டிய"
-        },
-        "Second Class": {
-            "English": "2nd Class",
-            "Sinhala": "දෙවන පන්තිය",
-            "Tamil": "இரண்டாம் வகுப்பு"
-        },
-        "Third Class": {
-            "English": "3rd Class",
-            "Sinhala": "තුන්වන පන්තිය",
-            "Tamil": "மூன்றாம் வகுப்பு"
+        // Station and Class translations data
+        const translationData = {
+            "BAMBALAPITIYA": {
+                "English": "BAMBALAPITIYA",
+                "Sinhala": "බම්බලපිටිය",
+                "Tamil": "பம்பலபிட்டிய"
+            },
+            "COLOMBO FORT": {
+                "English": "COLOMBO FORT",
+                "Sinhala": "කොළඹ කොටුව",
+                "Tamil": "கொழும்பு கோட்டை"
+            },
+            "GAMPAHA": {
+                "English": "GAMPAHA",
+                "Sinhala": "ගම්පහ",
+                "Tamil": "கம்பஹா"
+            },
+            "RAGAMA": {
+                "English": "RAGAMA",
+                "Sinhala": "රාගම",
+                "Tamil": "ராகமா"
+            },
+            "KOLLUPITIYA": {
+                "English": "KOLLUPITIYA",
+                "Sinhala": "කොල්ලුපිටිය",
+                "Tamil": "கொல்லுபிட்டிய"
+            },
+            "Second Class": {
+                "English": "2nd Class",
+                "Sinhala": "දෙවන පන්තිය",
+                "Tamil": "இரண்டாம் வகுப்பு"
+            },
+            "Third Class": {
+                "English": "3rd Class",
+                "Sinhala": "තුන්වන පන්තිය",
+                "Tamil": "மூன்றாம் வகுப்பு"
+            }
+        };
+
+        // Generate a random ticket number
+        function generateTicketNumber() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = 'TKCMWEB';
+            for (let i = 0; i < 12; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
         }
-    };
 
-    // Generate a random ticket number
-    function generateTicketNumber() {
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-      let result = 'TKCMWEB';
-      for (let i = 0; i < 12; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return result;
-    }
+        // Update element with error handling
+        const updateElement = (id, value) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+            } else {
+                console.warn(`Element with ID '${id}' not found`);
+            }
+        };
 
-    // Update element with error handling
-    const updateElement = (id, value) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.textContent = value;
-        } else {
-            console.warn(`Element with ID '${id}' not found`);
+        // Update station information
+        const updateStationInfo = (stationName, engId, sinId, tamId) => {
+            const stationData = translationData[stationName.toUpperCase()];
+            if (stationData) {
+                updateElement(engId, stationData.English);
+                updateElement(sinId, stationData.Sinhala);
+                updateElement(tamId, stationData.Tamil);
+            } else {
+                console.warn(`Station data not found for: ${stationName}`);
+                // Fallback to original station name if not found in translation data
+                updateElement(engId, stationName.toUpperCase());
+                updateElement(sinId, stationName);
+                updateElement(tamId, stationName);
+            }
+        };
+
+        // Update class information
+        const updateClassInfo = (className) => {
+            const classData = translationData[className];
+            if (classData) {
+                updateElement('class-eng', classData.English);
+                updateElement('class-sin', classData.Sinhala);
+                updateElement('class-tam', classData.Tamil);
+            } else {
+                console.warn(`Class data not found for: ${className}`);
+                // Fallback to original class name if not found in translation data
+                updateElement('class-eng', className);
+                updateElement('class-sin', className);
+                updateElement('class-tam', className);
+            }
+        };
+
+        // Function to trigger PDF download
+        function downloadPDF() {
+            // Get current date and time for filename
+            const now = new Date();
+            const timestamp = now.toISOString().replace(/[:.]/g, '-').slice(0, 19);
+            const filename = `Railway_Ticket_${timestamp}.pdf`;
+
+            // Set document title for PDF
+            document.title = filename;
+
+            // Trigger print dialog which will allow saving as PDF
+            window.print();
         }
-    };
 
-    // Update station information
-    const updateStationInfo = (stationName, engId, sinId, tamId) => {
-        const stationData = translationData[stationName.toUpperCase()];
-        if (stationData) {
-            updateElement(engId, stationData.English);
-            updateElement(sinId, stationData.Sinhala);
-            updateElement(tamId, stationData.Tamil);
-        } else {
-            console.warn(`Station data not found for: ${stationName}`);
-            // Fallback to original station name if not found in translation data
-            updateElement(engId, stationName.toUpperCase());
-            updateElement(sinId, stationName);
-            updateElement(tamId, stationName);
-        }
-    };
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if data exists, if not use test data
+            const travelDate = sessionStorage.getItem('travelDate') || '2025-03-25';
+            const purchaseTime = sessionStorage.getItem('purchaseTime') || '09:21:50';
+            const startStation = sessionStorage.getItem('startStation') || 'Gampaha';
+            const endStation = sessionStorage.getItem('endStation') || 'Bambalapitiya';
+            const shortDate = sessionStorage.getItem('shortDate') || '23-Jan';
+            const shortDatewithYear = sessionStorage.getItem('shortDatewithYear') || '23-Jan-2025';
+            const ticketPrice = sessionStorage.getItem('ticketPrice') || '20.00';
+            const classType = sessionStorage.getItem('Class') || 'Third Class';
+            const ticketNumber = generateTicketNumber();
 
-    // Update class information
-    const updateClassInfo = (className) => {
-        const classData = translationData[className];
-        if (classData) {
-            updateElement('class-eng', classData.English);
-            updateElement('class-sin', classData.Sinhala);
-            updateElement('class-tam', classData.Tamil);
-        } else {
-            console.warn(`Class data not found for: ${className}`);
-            // Fallback to original class name if not found in translation data
-            updateElement('class-eng', className);
-            updateElement('class-sin', className);
-            updateElement('class-tam', className);
-        }
-    };
+            // Update station information with translations
+            updateStationInfo(startStation, 'start-eng', 'start-sin', 'start-tam');
+            updateStationInfo(endStation, 'end-eng', 'end-sin', 'end-tam');
 
-    // Wait for DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        // Check if data exists, if not use test data
-        const travelDate = sessionStorage.getItem('travelDate') || '2025-03-25';
-        const purchaseTime = sessionStorage.getItem('purchaseTime') || '09:21:50';
-        const startStation = sessionStorage.getItem('startStation') || 'Gampaha';
-        const endStation = sessionStorage.getItem('endStation') || 'Bambalapitiya';
-        const shortDate = sessionStorage.getItem('shortDate') || '23-Jan';
-        const shortDatewithYear = sessionStorage.getItem('shortDatewithYear') || '23-Jan-2025';
-        const ticketPrice = sessionStorage.getItem('ticketPrice') || '20.00';
-        const classType = sessionStorage.getItem('Class') || 'Third Class';
-        const ticketNumber = generateTicketNumber();
+            // Update class information with translations
+            updateClassInfo(classType);
 
-        // Update station information with translations
-        updateStationInfo(startStation, 'start-eng', 'start-sin', 'start-tam');
-        updateStationInfo(endStation, 'end-eng', 'end-sin', 'end-tam');
-        
-        // Update class information with translations
-        updateClassInfo(classType);
+            // Update other ticket information
+            updateElement('price', 'Rs. ' + ticketPrice);
+            updateElement('shortwyear', shortDatewithYear);
+            updateElement('shortwyeartime', 'Issued on ' + shortDatewithYear + ' ' + purchaseTime);
 
-        // Update other ticket information
-        updateElement('price', 'Rs. ' + ticketPrice);
-        updateElement('shortwyear', shortDatewithYear);
-        updateElement('shortwyeartime', 'Issued on ' + shortDatewithYear + ' ' + purchaseTime);
-        
-        // Update barcode numbers
-        const barcodeElements = document.querySelectorAll('#barcodeNumber');
-        barcodeElements.forEach(element => {
-            element.textContent = ticketNumber;
+            // Update barcode numbers
+            const barcodeElements = document.querySelectorAll('#barcodeNumber');
+            barcodeElements.forEach(element => {
+                element.textContent = ticketNumber;
+            });
+
+            // Auto-download PDF after 1 second
+            setTimeout(() => {
+                downloadPDF();
+            }, 1000);
         });
-    });
-  </script>
+    </script>
 </body>
+
 </html>
