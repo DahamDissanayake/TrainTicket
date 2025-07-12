@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Railways - E-Ticket</title>
     <link rel="stylesheet" href="Assets/TestingPrint1.css">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
@@ -208,6 +208,49 @@
             }
         };
 
+        // Auto save PDF function using html2pdf with optimized settings
+        function autoSavePDF() {
+            setTimeout(() => {
+                const element = document.querySelector('.ticket');
+                const ticketNumber = document.getElementById('barcodeNumber').textContent;
+                
+                const opt = {
+                    margin: [0.2, 0.2, 0.2, 0.2], // 5px margin converted to inches (approximately 0.02 inches)
+                    filename: `Railway-Ticket-${ticketNumber}.pdf`,
+                    image: { 
+                        type: 'jpeg', 
+                        quality: 0.85 // Reduced quality from 0.98 to 0.85
+                    },
+                    html2canvas: { 
+                        scale: 1.5, // Reduced scale from 2 to 1.5 for better performance
+                        useCORS: true,
+                        allowTaint: true,
+                        width: element.scrollWidth,
+                        height: element.scrollHeight
+                    },
+                    jsPDF: { 
+                        unit: 'in', 
+                        format: 'a4', 
+                        orientation: 'portrait',
+                        compress: true // Enable compression
+                    },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                };
+
+                html2pdf().set(opt).from(element).save().then(() => {
+                    // Go back to previous page after PDF is generated
+                    setTimeout(() => {
+                        window.history.back();
+                    }, 1000);
+                }).catch(error => {
+                    console.error('PDF generation failed:', error);
+                    // Still go back even if PDF generation fails
+                    setTimeout(() => {
+                        window.history.back();
+                    }, 1000);
+                });
+            }, 1000); // Wait 1 second for all elements to be updated
+        }
 
         // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function () {
@@ -240,7 +283,8 @@
                 element.textContent = ticketNumber;
             });
 
-    
+            // Auto save PDF and go back
+            autoSavePDF();
         });
     </script>
 </body>

@@ -27,9 +27,9 @@
 
             <div class="form-group">
                 <label for="purchaseTime">
-                    Ticket Purchased Time (HH:MM:SS, 20-hour format)
+                    Ticket Purchased Time (HH:MM:SS, 24-hour format)
                 </label>
-                <input type="time" id="purchaseTime" name="purchaseTime" min="00:00:00" max="19:59:59" step="1" required>
+                <input type="text" id="purchaseTime" name="purchaseTime" placeholder="HH:MM:SS" min="00:00:00" max="23:59:59" step="1" required pattern="^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$">
             </div>
             
             <div class="form-group">
