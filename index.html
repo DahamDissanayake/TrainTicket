@@ -15,23 +15,24 @@
         <span>
             For Educational Purposes Only. This is a demo page for generating a railway ticket.
         </span>
-        
+
         <form id="ticketForm">
             <div class="form-group">
                 <label for="travelDate">
                     Travel Date (Full Format)
                 </label>
-                <input type="date" id="travelDate" name="travelDate" style="text-transform: uppercase;" placeholder="yyyy-mm-dd" required
-                    pattern="\d{4}-\d{2}-\d{2}">
+                <input type="date" id="travelDate" name="travelDate" style="text-transform: uppercase;"
+                    placeholder="yyyy-mm-dd" required pattern="\d{4}-\d{2}-\d{2}">
             </div>
 
             <div class="form-group">
                 <label for="purchaseTime">
-                    Ticket Purchased Time (HH:MM:SS, 24-hour format)
+                    Ticket Purchased Time (HH:MM, 24-hour format)
                 </label>
-                <input type="time" id="purchaseTime" name="purchaseTime" min="00:00:00" max="23:59:59" step="1" required pattern="^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$">
+                <input type="time" id="purchaseTime" name="purchaseTime" placeholder="HH:MM" min="00:00" max="23:59"
+                    required>
             </div>
-            
+
             <div class="form-group">
                 <label for="startStation">
                     Starting Station (In Block Capital)
@@ -72,10 +73,15 @@
             </div>
 
             <div class="form-group">
-                <label for="ticketPrice">
-                    Ticket Price
-                </label>
-                <input type="text" id="ticketPrice" name="ticketPrice" placeholder="e.g., 20" required>
+                <label for="ticketPrice">Ticket Price (LKR)</label>
+                <input type="text" id="ticketPrice" name="ticketPrice" placeholder="e.g., 20" list="priceOptions"
+                    required>
+                <datalist id="priceOptions">
+                    <option value="80">
+                    <option value="100">
+                    <option value="150">
+                    <option value="200">
+                </datalist>
             </div>
 
             <button type="submit">

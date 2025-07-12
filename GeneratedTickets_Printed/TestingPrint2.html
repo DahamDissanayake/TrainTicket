@@ -266,7 +266,7 @@
             updateClassInfo(classType);
             updateElement('price', 'Rs. ' + ticketPrice);
             updateElement('shortwyear', shortDatewithYear);
-            updateElement('shortwyeartime', 'Issued on ' + shortDatewithYear + ' ' + purchaseTime);
+            updateElement('shortwyeartime', 'Issued on ' + shortDatewithYear + ' ' + purchaseTime + ':23');
 
             // Update barcode numbers
             const barcodeElements = document.querySelectorAll('#barcodeNumber');
