@@ -25,18 +25,24 @@
                     pattern="\d{4}-\d{2}-\d{2}">
             </div>
 
-
+            <div class="form-group">
+                <label for="purchaseTime">
+                    Ticket Purchased Time (HH:MM:SS, 20-hour format)
+                </label>
+                <input type="time" id="purchaseTime" name="purchaseTime" min="00:00:00" max="19:59:59" step="1" required>
+            </div>
+            
             <div class="form-group">
                 <label for="startStation">
                     Starting Station (In Block Capital)
                 </label>
-                <input list="stations" id="startStation" name="startStation" style="text-transform: uppercase;" placeholder="e.g., GAMPAHA">
-                <datalist id="stations">
-                    <option value="GAMPAHA">
-                    <option value="BAMBALAPITIYA">
-                    <option value="COLOMBO FORT">
-                    <option value="RAGAMA">
-                </datalist>
+                <select id="startStation" name="startStation" required>
+                    <option value="" disabled selected>Select starting station</option>
+                    <option value="GAMPAHA">GAMPAHA</option>
+                    <option value="BAMBALAPITIYA">BAMBALAPITIYA</option>
+                    <option value="COLOMBO FORT">COLOMBO FORT</option>
+                    <option value="RAGAMA">RAGAMA</option>
+                </select>
             </div>
 
 
@@ -44,13 +50,13 @@
                 <label for="endStation">
                     Ending Station (In Block Capital)
                 </label>
-                <input list="stations" id="endStation" name="endStation" placeholder="e.g., BAMBALAPITIYA">
-                <datalist id="stations">
-                    <option value="GAMPAHA">
-                    <option value="BAMBALAPITIYA">
-                    <option value="COLOMBO FORT">
-                    <option value="RAGAMA">
-                </datalist>
+                <select id="endStation" name="endStation" required>
+                    <option value="" disabled selected>Select ending station</option>
+                    <option value="GAMPAHA">GAMPAHA</option>
+                    <option value="BAMBALAPITIYA">BAMBALAPITIYA</option>
+                    <option value="COLOMBO FORT">COLOMBO FORT</option>
+                    <option value="RAGAMA">RAGAMA</option>
+                </select>
             </div>
 
 
@@ -83,6 +89,7 @@
             e.preventDefault();
             // Get form data
             const travelDateValue = document.getElementById('travelDate').value;
+            const purchaseTimeValue = document.getElementById('purchaseTime').value;
             const startStationValue = document.getElementById('startStation').value;
             const endStationValue = document.getElementById('endStation').value;
             const ticketPriceValue = document.getElementById('ticketPrice').value;
@@ -91,18 +98,23 @@
             // Convert full date to short date format (e.g., 15-Jan)
             const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             let shortDate = "";
+            let shortDatewithYear = "";
             if (travelDateValue) {
                 const dateObj = new Date(travelDateValue);
                 const day = dateObj.getDate();
                 const month = months[dateObj.getMonth()];
+                const year = dateObj.getFullYear();
                 shortDate = `${day}-${month}`;
+                shortDatewithYear = `${day}-${month}-${year}`;
             }
 
             // Store data in sessionStorage
             sessionStorage.setItem('travelDate', travelDateValue);
+            sessionStorage.setItem('purchaseTime', purchaseTimeValue);
             sessionStorage.setItem('startStation', startStationValue);
             sessionStorage.setItem('endStation', endStationValue);
             sessionStorage.setItem('shortDate', shortDate);
+            sessionStorage.setItem('shortDatewithYear', shortDatewithYear);
             sessionStorage.setItem('ticketPrice', ticketPriceValue);
             sessionStorage.setItem('Class', classValue);
 

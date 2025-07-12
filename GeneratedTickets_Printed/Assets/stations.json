@@ -1,0 +1,43 @@
+{
+    "BAMBALAPITIYA": {
+        "English": "BAMBALAPITIYA",
+        "Sinhala": "බම්බලපිටිය",
+        "Tamil": "பம்பலபிட்டிய"
+    },
+
+    "COLOMBO FORT": {
+        "English": "COLOMBO FORT",
+        "Sinhala": "කොළඹ කොටුව",
+        "Tamil": "கொழும்பு கோட்டை"
+    },
+
+    "GAMPAHA": {
+        "English": "GAMPAHA",
+        "Sinhala": "ගම්පහ",
+        "Tamil": "கம்பஹா"
+    },
+
+    "RAGAMA": {
+        "English": "RAGAMA",
+        "Sinhala": "රාගම",
+        "Tamil": "ராகமா"
+    },
+
+    "KOLLUPITIYA": {
+        "English": "KOLLUPITIYA",
+        "Sinhala": "කොල්ලුපිටිය",
+        "Tamil": "கொல்லுபிட்டிய"
+    }, 
+    
+    "Second Class": {
+        "English": "2nd Class",
+        "Sinhala": "දෙවන පන්තිය",
+        "Tamil": "இரண்டாம் வகுப்பு"
+    },
+    "Third Class": {
+        "English": "3rd Class",
+        "Sinhala": "තුන්වන පන්තිය",
+        "Tamil": "மூன்றாம் வகுப்பு"
+    }
+}
+
