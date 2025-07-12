@@ -4,81 +4,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket Generator</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Railway Ticket Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 480px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #64b5f6, #42a5f5, #2196f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 0.95em;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e0e0e0;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #404040;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #2a2a2a;
+            color: #ffffff;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        input[type="time"]:focus,
+        select:focus {
+            border-color: #42a5f5;
+            box-shadow: 0 0 0 3px rgba(66, 165, 245, 0.2);
+            transform: translateY(-1px);
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        select option {
+            padding: 10px;
+            background: #2a2a2a;
+            color: #ffffff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1e88e5, #1976d2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(30, 136, 229, 0.4);
+            background: linear-gradient(135deg, #2196f3, #1e88e5);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .warning {
+            background: rgba(255, 193, 7, 0.15);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            color: #ffc107;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .submit-btn {
+                padding: 14px;
+                font-size: 15px;
+            }
+        }
+
+        /* Custom styling for date and time inputs */
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: 8px;
+            opacity: 0.6;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator:hover,
+        input[type="time"]::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Don't Use This Bitchhhh!!!</h1>
-        <span>
-            For Educational Purposes Only. This is a demo page for generating a railway ticket.
-        </span>
-        
+        <div class="header">
+            <h1>DON'T USE THIS</h1>
+            <p class="subtitle">Generate demo railway tickets for educational purposes</p>
+        </div>
+
+        <div class="warning">
+            ⚠️ For Educational Purposes Only - Demo Application
+        </div>
+
         <form id="ticketForm">
             <div class="form-group">
-                <label for="travelDate">
-                    Travel Date (Full Format)
-                </label>
-                <input type="date" id="travelDate" name="travelDate" style="text-transform: uppercase;" placeholder="yyyy-mm-dd" required
-                    pattern="\d{4}-\d{2}-\d{2}">
+                <label for="travelDate">Travel Date</label>
+                <input type="date" id="travelDate" name="travelDate" required>
             </div>
 
             <div class="form-group">
-                <label for="purchaseTime">
-                    Ticket Purchased Time (HH:MM:SS, 24-hour format)
-                </label>
-                <input type="text" id="purchaseTime" name="purchaseTime" placeholder="HH:MM:SS" min="00:00:00" max="23:59:59" step="1" required pattern="^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$">
-            </div>
-            
-            <div class="form-group">
-                <label for="startStation">
-                    Starting Station (In Block Capital)
-                </label>
-                <select id="startStation" name="startStation" required>
-                    <option value="" disabled selected>Select starting station</option>
-                    <option value="GAMPAHA">GAMPAHA</option>
-                    <option value="BAMBALAPITIYA">BAMBALAPITIYA</option>
-                    <option value="COLOMBO FORT">COLOMBO FORT</option>
-                    <option value="RAGAMA">RAGAMA</option>
-                </select>
+                <label for="purchaseTime">Purchase Time (24-hour format)</label>
+                <input type="time" id="purchaseTime" name="purchaseTime" step="1" required>
             </div>
 
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="startStation">From Station</label>
+                    <select id="startStation" name="startStation" required>
+                        <option value="" disabled selected>Select origin</option>
+                        <option value="GAMPAHA">Gampaha</option>
+                        <option value="BAMBALAPITIYA">Bambalapitiya</option>
+                        <option value="COLOMBO FORT">Colombo Fort</option>
+                        <option value="RAGAMA">Ragama</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="endStation">
-                    Ending Station (In Block Capital)
-                </label>
-                <select id="endStation" name="endStation" required>
-                    <option value="" disabled selected>Select ending station</option>
-                    <option value="GAMPAHA">GAMPAHA</option>
-                    <option value="BAMBALAPITIYA">BAMBALAPITIYA</option>
-                    <option value="COLOMBO FORT">COLOMBO FORT</option>
-                    <option value="RAGAMA">RAGAMA</option>
-                </select>
+                <div class="form-group">
+                    <label for="endStation">To Station</label>
+                    <select id="endStation" name="endStation" required>
+                        <option value="" disabled selected>Select destination</option>
+                        <option value="GAMPAHA">Gampaha</option>
+                        <option value="BAMBALAPITIYA">Bambalapitiya</option>
+                        <option value="COLOMBO FORT">Colombo Fort</option>
+                        <option value="RAGAMA">Ragama</option>
+                    </select>
+                </div>
             </div>
 
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="Class">Travel Class</label>
+                    <select id="Class" name="Class" required>
+                        <option value="" disabled selected>Select class</option>
+                        <option value="Third Class">Third Class</option>
+                        <option value="Second Class">Second Class</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="Class">
-                    Choose the class
-                </label>
-                <select id="Class" name="Class" required>
-                    <option value="" disabled selected>Select class</option>
-                    <option value="Third Class">Third Class</option>
-                    <option value="Second Class">Second Class</option>
-                </select>
+                <div class="form-group">
+                    <label for="ticketPrice">Ticket Price (LKR)</label>
+                    <input type="text" id="ticketPrice" name="ticketPrice" placeholder="e.g., 20" list="priceOptions"
+                        required>
+                    <datalist id="priceOptions">
+                        <option value="80">
+                        <option value="100">
+                        <option value="150">
+                        <option value="200">
+                    </datalist>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="ticketPrice">
-                    Ticket Price
-                </label>
-                <input type="text" id="ticketPrice" name="ticketPrice" placeholder="e.g., 20" required>
-            </div>
-
-            <button type="submit">
+            <button type="submit" class="submit-btn">
                 Generate Ticket
             </button>
         </form>
@@ -87,6 +264,7 @@
     <script>
         document.getElementById('ticketForm').addEventListener('submit', function (e) {
             e.preventDefault();
+
             // Get form data
             const travelDateValue = document.getElementById('travelDate').value;
             const purchaseTimeValue = document.getElementById('purchaseTime').value;
@@ -99,6 +277,7 @@
             const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             let shortDate = "";
             let shortDatewithYear = "";
+
             if (travelDateValue) {
                 const dateObj = new Date(travelDateValue);
                 const day = dateObj.getDate();
@@ -108,19 +287,26 @@
                 shortDatewithYear = `${day}-${month}-${year}`;
             }
 
-            // Store data in sessionStorage
-            sessionStorage.setItem('travelDate', travelDateValue);
-            sessionStorage.setItem('purchaseTime', purchaseTimeValue);
-            sessionStorage.setItem('startStation', startStationValue);
-            sessionStorage.setItem('endStation', endStationValue);
-            sessionStorage.setItem('shortDate', shortDate);
-            sessionStorage.setItem('shortDatewithYear', shortDatewithYear);
-            sessionStorage.setItem('ticketPrice', ticketPriceValue);
-            sessionStorage.setItem('Class', classValue);
+            // Store data in memory (since we can't use sessionStorage in artifacts)
+            const ticketData = {
+                travelDate: travelDateValue,
+                purchaseTime: purchaseTimeValue,
+                startStation: startStationValue,
+                endStation: endStationValue,
+                shortDate: shortDate,
+                shortDatewithYear: shortDatewithYear,
+                ticketPrice: ticketPriceValue,
+                Class: classValue
+            };
 
-            // Redirect to ticket page
-            window.location.href = 'GeneratedTicket.html';
+            // In a real application, you would redirect to the ticket page
+            // For demo purposes, we'll show an alert
+            alert('Ticket data prepared! In a real application, this would redirect to the ticket page.');
+            console.log('Ticket Data:', ticketData);
         });
+
+        // Set minimum date to today
+        document.getElementById('travelDate').min = new Date().toISOString().split('T')[0];
     </script>
 </body>
 

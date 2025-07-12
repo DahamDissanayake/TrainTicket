@@ -208,53 +208,48 @@
             }
         };
 
-        // Auto save PDF function using html2pdf with optimized settings
-        function autoSavePDF() {
-            setTimeout(() => {
-                const element = document.querySelector('.ticket');
-                const ticketNumber = document.getElementById('barcodeNumber').textContent;
-                
-                const opt = {
-                    margin: [0.2, 0.2, 0.2, 0.2], // 5px margin converted to inches (approximately 0.02 inches)
-                    filename: `Railway-Ticket-${ticketNumber}.pdf`,
-                    image: { 
-                        type: 'jpeg', 
-                        quality: 0.85 // Reduced quality from 0.98 to 0.85
-                    },
-                    html2canvas: { 
-                        scale: 1.5, // Reduced scale from 2 to 1.5 for better performance
-                        useCORS: true,
-                        allowTaint: true,
-                        width: element.scrollWidth,
-                        height: element.scrollHeight
-                    },
-                    jsPDF: { 
-                        unit: 'in', 
-                        format: 'a4', 
-                        orientation: 'portrait',
-                        compress: true // Enable compression
-                    },
-                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-                };
+        // Instant PDF generation with optimized settings for speed
+        function generatePDFInstantly() {
+            const element = document.querySelector('.ticket');
+            const ticketNumber = document.getElementById('barcodeNumber').textContent;
+            
+            const opt = {
+                margin: [0.2, 0.2, 0.2, 0.2],
+                filename: `Railway-Ticket-${ticketNumber}.pdf`,
+                image: { 
+                    type: 'jpeg', 
+                    quality: 0.7 // Reduced quality for faster generation
+                },
+                html2canvas: { 
+                    scale: 1.2, // Reduced scale for faster processing
+                    useCORS: true,
+                    allowTaint: true,
+                    width: element.scrollWidth,
+                    height: element.scrollHeight,
+                    logging: false // Disable logging for better performance
+                },
+                jsPDF: { 
+                    unit: 'in', 
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    compress: true
+                },
+                pagebreak: { mode: ['avoid-all'] }
+            };
 
-                html2pdf().set(opt).from(element).save().then(() => {
-                    // Go back to previous page after PDF is generated
-                    setTimeout(() => {
-                        window.history.back();
-                    }, 1000);
-                }).catch(error => {
-                    console.error('PDF generation failed:', error);
-                    // Still go back even if PDF generation fails
-                    setTimeout(() => {
-                        window.history.back();
-                    }, 1000);
-                });
-            }, 1000); // Wait 1 second for all elements to be updated
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Go back immediately after PDF starts downloading
+                window.history.back();
+            }).catch(error => {
+                console.error('PDF generation failed:', error);
+                // Still go back even if PDF generation fails
+                window.history.back();
+            });
         }
 
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function () {
-            // Check if data exists, if not use test data
+        // Initialize everything and generate PDF instantly
+        function initializeAndGeneratePDF() {
+            // Get data from sessionStorage or use test data
             const travelDate = sessionStorage.getItem('travelDate') || '2025-03-25';
             const purchaseTime = sessionStorage.getItem('purchaseTime') || '09:21:50';
             const startStation = sessionStorage.getItem('startStation') || 'Gampaha';
@@ -265,14 +260,10 @@
             const classType = sessionStorage.getItem('Class') || 'Third Class';
             const ticketNumber = generateTicketNumber();
 
-            // Update station information with translations
+            // Update all elements immediately
             updateStationInfo(startStation, 'start-eng', 'start-sin', 'start-tam');
             updateStationInfo(endStation, 'end-eng', 'end-sin', 'end-tam');
-
-            // Update class information with translations
             updateClassInfo(classType);
-
-            // Update other ticket information
             updateElement('price', 'Rs. ' + ticketPrice);
             updateElement('shortwyear', shortDatewithYear);
             updateElement('shortwyeartime', 'Issued on ' + shortDatewithYear + ' ' + purchaseTime);
@@ -283,9 +274,17 @@
                 element.textContent = ticketNumber;
             });
 
-            // Auto save PDF and go back
-            autoSavePDF();
-        });
+            // Generate PDF instantly after DOM updates
+            generatePDFInstantly();
+        }
+
+        // Start everything as soon as DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeAndGeneratePDF);
+        } else {
+            // DOM is already loaded
+            initializeAndGeneratePDF();
+        }
     </script>
 </body>
 

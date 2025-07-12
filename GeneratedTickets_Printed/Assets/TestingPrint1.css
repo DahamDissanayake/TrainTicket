@@ -13,10 +13,11 @@ body {
 .container {
     justify-content: center;
     align-items: center;
-}
 
+}
 .ticket {
     width: 555px;
+    
     background: white;
     border: 1px solid #e5e5e5;
     overflow: hidden;
@@ -276,44 +277,3 @@ body {
     color: #6b7280;
 }
 
-/* Mobile Scaling - Maintains Desktop Layout but Scales Down */
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
-    
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
-    
-    .ticket {
-        /* Scale the entire ticket to fit mobile screens */
-        transform: scale(0.65);
-        transform-origin: center;
-        width: 555px; /* Keep original width */
-        margin: 0;
-    }
-}
-
-/* For very small screens */
-@media (max-width: 400px) {
-    .ticket {
-        transform: scale(0.55);
-        transform-origin: center;
-    }
-}
-
-/* For medium mobile screens */
-@media (max-width: 480px) and (min-width: 401px) {
-    .ticket {
-        transform: scale(0.6);
-        transform-origin: center;
-    }
-}
